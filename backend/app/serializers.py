@@ -1,8 +1,23 @@
 from rest_framework import serializers
-# from .models import (models)
+from .models import Clientes, Articulos, Vendedores, Facturacion
 
-class HomeSerializer(serializers.ModelSerializer):
+
+class ClientesSerializer(serializers.ModelSerializer):
     class Meta:
-        # model= Home
-        fields= '__all__'
-    
+        model=Clientes
+        fields='__all__'
+
+class ArticulosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Articulos
+        fields='__all__'
+
+class VendedoresSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Vendedores
+        fields='__all__'
+
+class FacturacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Facturacion
+        fields='__all__'

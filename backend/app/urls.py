@@ -1,11 +1,16 @@
 from django.urls import path
-from .views import ClienteList, Articulo, ClienteList, ClienteRetrieve, Vendedore, Facturacion
+from .views import ClienteList, ClienteRetrieve, ArticulosList, ArticulosRetrieve, FacturacionList, FacturacionRetrieve,  VendedoresList, VendedoresRetrieve, FacturacionList, FacturacionRetrieve
 urlpatterns = [
-    # Clientes
+    # Clientes Endpoints
     path('clientes', ClienteList),
     path('clientes/<int:pk>/', ClienteRetrieve),
-    # Articulos
-    path('articulos', Articulo),
-    path('vendedores', Vendedore),
-    path('facturacion', Facturacion)
+    # Articulos Endpoints
+    path('articulos', ArticulosList),
+    path('articulos/<int:pk>/', ArticulosRetrieve),
+    # Vendedores Endpoints
+    path('vendedores', VendedoresList),
+    path('vendedores/<int:pk>/', VendedoresRetrieve),
+    # Facturacion Endpoints
+    path('facturacion', FacturacionList),
+    path('facturacion/<int:pk>/', FacturacionRetrieve)
 ]

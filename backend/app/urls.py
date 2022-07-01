@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import ClienteList, ClienteRetrieve, ArticulosList, ArticulosRetrieve, FacturacionList, FacturacionRetrieve,  VendedoresList, VendedoresRetrieve, FacturacionList, FacturacionRetrieve
+from .views import ClienteList, ClienteRetrieve, ArticulosList, ArticulosRetrieve, VendedoresList, VendedoresRetrieve
+
 urlpatterns = [
     # Clientes Endpoints
     path('clientes', ClienteList),
@@ -11,6 +12,6 @@ urlpatterns = [
     path('vendedores', VendedoresList),
     path('vendedores/<int:pk>/', VendedoresRetrieve),
     # Facturacion Endpoints
-    path('facturacion', FacturacionList),
-    path('facturacion/<int:pk>/', FacturacionRetrieve)
+    # path('facturacion', FacturacionList),
+    # path('facturacion/<int:pk>/', FacturacionRetrieve)
 ]

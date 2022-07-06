@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Button, Form, Input, Modal, Notification, PageHeader, Space, Switch, Table } from '@arco-design/web-react';
 import { HiPlusSm } from 'react-icons/hi';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { getClients } from '../services/api/getClients';
-import { postClient } from '../services/api/postClient';
-import { deleteClient } from '../services/api/deleteClient';
-import { patchClient } from '../services/api/patchClient';
+import { getClients } from '../services/api/clients-actions/get-clients';
+import { postClient } from '../services/api/clients-actions/post-client';
+import { deleteClient } from '../services/api/clients-actions/delete-client';
+import { patchClient } from '../services/api/clients-actions/patch-client';
 
 
 export default function ClientsPage() {
@@ -13,7 +13,7 @@ export default function ClientsPage() {
   const { data } = useQuery('clients', getClients);
   const { mutate: addClient, isLoading: clientPostIsLoading } = useMutation(postClient, {
     onSuccess: () => {
-      queryClient.invalidateQueries('clients')
+      queryClient.invalidateQueries('clients');
       setShowModal(false);
       form.clearFields();
       form.setFieldValue('estado', true);

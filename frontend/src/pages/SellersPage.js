@@ -109,7 +109,7 @@ export default function SellersPage() {
         style={{ marginBottom: '1rem' }}
         title='Gestión de vendedores'
         extra={
-          <Button icon={<HiPlusSm />} type='primary' onClick={() => setShowModal(true)} >Nuevo artículo</Button>
+          <Button icon={<HiPlusSm />} type='primary' onClick={() => setShowModal(true)} >Nuevo vendedor</Button>
         }
       />
       <Table rowKey='id' columns={columns} data={data?.data} />

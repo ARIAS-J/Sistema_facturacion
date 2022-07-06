@@ -6,7 +6,6 @@ import { getSellers } from '../services/api/sellers-actions/get-sellers';
 import { postSeller } from '../services/api/sellers-actions/post-seller';
 import { patchSeller } from '../services/api/sellers-actions/patch-seller';
 import { deleteSeller } from '../services/api/sellers-actions/delete-seller';
-import TablePlaceholder from '../components/TablePlaceholder';
 
 
 export default function SellersPage() {
@@ -113,7 +112,7 @@ export default function SellersPage() {
           <Button icon={<HiPlusSm />} type='primary' onClick={() => setShowModal(true)} >Nuevo vendedor</Button>
         }
       />
-      <Table rowKey='id' columns={columns} data={data?.data} placeholder={<TablePlaceholder />} />
+      <Table rowKey='id' columns={columns} data={data?.data} />
       <Modal
         title='Agregar vendedor'
         visible={showModal}

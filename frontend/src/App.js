@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools';
 import ArticlesPage from './pages/ArticlesPage';
 import SellersPage from './pages/SellersPage';
+import PresentationPage from './pages/PresentationPage';
+
 
 const queryClient = new QueryClient();
 
@@ -16,6 +18,7 @@ function App() {
           <SideMenu />
           <div className='dashboard-content'>
             <Routes>
+              <Route path='/' element={<PresentationPage />} />
               <Route path='/clientes' element={<ClientsPage />} />
               <Route path='/articulos' element={<ArticlesPage />} />
               <Route path='/vendedores' element={<SellersPage />} />

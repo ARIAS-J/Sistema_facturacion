@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Input, Modal, Notification, PageHeader, Space, Switch, Table } from '@arco-design/web-react';
+import { Button, Form, Input, Modal, Notification, PageHeader, Space, Switch, Table, Typography } from '@arco-design/web-react';
 import { HiPlusSm } from 'react-icons/hi';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getClients } from '../services/api/clients-actions/get-clients';
@@ -77,7 +77,7 @@ export default function ClientsPage() {
       dataIndex: 'estado',
       render: (col, record) => {
         if (record.estado) {
-          return 'Activo'
+          return <Typography.Text type='success'>Activo</Typography.Text>
         } else {
           return 'Inactivo'
         }

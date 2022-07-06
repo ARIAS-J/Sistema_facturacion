@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Button, Form, Input, Modal, Notification, PageHeader, Space, Switch, Table } from '@arco-design/web-react';
+import { Button, Form, Input, Modal, Notification, PageHeader, Space, Switch, Table, Typography } from '@arco-design/web-react';
 import { HiPlusSm } from 'react-icons/hi';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getSellers } from '../services/api/sellers-actions/get-sellers';
 import { postSeller } from '../services/api/sellers-actions/post-seller';
 import { patchSeller } from '../services/api/sellers-actions/patch-seller';
 import { deleteSeller } from '../services/api/sellers-actions/delete-seller';
+import TablePlaceholder from '../components/TablePlaceholder';
 
 
 export default function SellersPage() {
@@ -77,7 +78,7 @@ export default function SellersPage() {
       dataIndex: 'estado',
       render: (col, record) => {
         if (record.estado) {
-          return 'Activo'
+          return <Typography.Text type='success'>Activo</Typography.Text>
         } else {
           return 'Inactivo'
         }
@@ -112,7 +113,7 @@ export default function SellersPage() {
           <Button icon={<HiPlusSm />} type='primary' onClick={() => setShowModal(true)} >Nuevo vendedor</Button>
         }
       />
-      <Table rowKey='id' columns={columns} data={data?.data} />
+      <Table rowKey='id' columns={columns} data={data?.data} placeholder={<TablePlaceholder />} />
       <Modal
         title='Agregar vendedor'
         visible={showModal}

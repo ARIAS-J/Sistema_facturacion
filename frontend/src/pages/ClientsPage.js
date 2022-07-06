@@ -76,7 +76,7 @@ export default function ClientsPage() {
       title: 'Estado',
       dataIndex: 'estado',
       render: (col, record) => {
-        if (record) {
+        if (record.estado) {
           return 'Activo'
         } else {
           return 'Inactivo'

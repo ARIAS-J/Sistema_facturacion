@@ -4,6 +4,7 @@ import SideMenu from './components/SideMenu';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools';
 import ArticlesPage from './pages/ArticlesPage';
+import SellersPage from './pages/SellersPage';
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path='/clientes' element={<ClientsPage />} />
               <Route path='/articulos' element={<ArticlesPage />} />
+              <Route path='/vendedores' element={<SellersPage />} />
             </Routes>
           </div>
         </div>

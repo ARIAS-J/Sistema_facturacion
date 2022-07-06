@@ -69,7 +69,7 @@ export default function SellersPage() {
       dataIndex: 'nombre'
     },
     {
-      title: 'Porciento de comisión',
+      title: 'Porciento de comisión (%)',
       dataIndex: 'porciento_comision'
     },
     {

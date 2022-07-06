@@ -73,7 +73,7 @@ export default function ArticlesPage() {
       dataIndex: 'descripcion'
     },
     {
-      title: 'Precio unitario',
+      title: 'Precio unitario (RD$)',
       dataIndex: 'precio_unitario'
     },
     {

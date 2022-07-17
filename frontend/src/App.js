@@ -8,6 +8,7 @@ import SellersPage from './pages/SellersPage';
 import PresentationPage from './pages/PresentationPage';
 import { ConfigProvider } from '@arco-design/web-react';
 import esES from '@arco-design/web-react/es/locale/es-ES';
+import { Private } from './components/Private';
 
 const queryClient = new QueryClient();
 
@@ -16,17 +17,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ConfigProvider locale={esES} >
         <BrowserRouter>
-          <div className='dashboard-structure'>
-            <SideMenu />
-            <div className='dashboard-content'>
-              <Routes>
-                <Route path='/' element={<PresentationPage />} />
-                <Route path='/clientes' element={<ClientsPage />} />
-                <Route path='/articulos' element={<ArticlesPage />} />
-                <Route path='/vendedores' element={<SellersPage />} />
-              </Routes>
-            </div>
-          </div>
+          <Routes>
+            <Route path='/' element={<Private component={<PresentationPage />} />} />
+            <Route path='/clientes' element={<Private component={<ClientsPage />} />} />
+            <Route path='/articulos' element={<Private component={<ArticlesPage />} />} />
+            <Route path='/vendedores' element={<Private component={<SellersPage />} />} />
+          </Routes>
         </BrowserRouter>
         <ReactQueryDevtools />
       </ConfigProvider>

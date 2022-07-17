@@ -6,6 +6,7 @@ import { getClients } from '../services/api/clients-actions/get-clients';
 import { postClient } from '../services/api/clients-actions/post-client';
 import { deleteClient } from '../services/api/clients-actions/delete-client';
 import { patchClient } from '../services/api/clients-actions/patch-client';
+import Layout from '../components/Layout';
 
 
 export default function ClientsPage() {
@@ -104,7 +105,7 @@ export default function ClientsPage() {
   ]
 
   return (
-    <div>
+    <Layout>
       <PageHeader
         style={{ marginBottom: '1rem' }}
         title='Gestión de clientes'
@@ -150,6 +151,6 @@ export default function ClientsPage() {
           </Form.Item>
         </Form>
       </Modal>
-    </div>
+    </Layout>
   )
 }

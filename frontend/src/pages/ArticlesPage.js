@@ -6,6 +6,7 @@ import { getArticles } from '../services/api/articles-actions/get-articles';
 import { postArticle } from '../services/api/articles-actions/post-article';
 import { patchArticle } from '../services/api/articles-actions/patch-article';
 import { deleteArticle } from '../services/api/articles-actions/delete-article';
+import Layout from '../components/Layout';
 
 
 export default function ArticlesPage() {
@@ -108,7 +109,7 @@ export default function ArticlesPage() {
   ]
 
   return (
-    <div>
+    <Layout>
       <PageHeader
         style={{ marginBottom: '1rem' }}
         title='Gestión de artículos'
@@ -154,6 +155,6 @@ export default function ArticlesPage() {
           </Form.Item>
         </Form>
       </Modal>
-    </div>
+    </Layout>
   )
 }

@@ -1,14 +1,15 @@
 import { Card, Grid, PageHeader } from '@arco-design/web-react';
+import Layout from '../components/Layout';
 
 export default function PresentationPage() {
+
   return (
-    <div>
+    <Layout>
       <PageHeader
         style={{ marginBottom: '1rem' }}
         title='INTEGRANTES'
         subTitle='2DO PARCIAL DE INTEGRACIÓN PROPIETARIA/OPEN SOURCE'
       />
-
       <Grid.Row gutter={16} style={{ marginBottom: 16 }} >
         <Grid.Col span={12}>
           <Card hoverable>
@@ -33,7 +34,6 @@ export default function PresentationPage() {
           </Card>
         </Grid.Col>
       </Grid.Row>
-
-    </div>
+    </Layout>
   )
 }

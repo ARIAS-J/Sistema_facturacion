@@ -6,6 +6,7 @@ import { getSellers } from '../services/api/sellers-actions/get-sellers';
 import { postSeller } from '../services/api/sellers-actions/post-seller';
 import { patchSeller } from '../services/api/sellers-actions/patch-seller';
 import { deleteSeller } from '../services/api/sellers-actions/delete-seller';
+import Layout from '../components/Layout';
 
 
 export default function SellersPage() {
@@ -104,7 +105,7 @@ export default function SellersPage() {
   ]
 
   return (
-    <div>
+    <Layout>
       <PageHeader
         style={{ marginBottom: '1rem' }}
         title='Gestión de vendedores'
@@ -147,6 +148,6 @@ export default function SellersPage() {
           </Form.Item>
         </Form>
       </Modal>
-    </div>
+    </Layout>
   )
 }

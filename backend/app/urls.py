@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ClienteList, ClienteRetrieve, ArticulosList, ArticulosRetrieve, VendedoresList, VendedoresRetrieve
+from .views import ClienteList, ClienteRetrieve, ArticulosList, ArticulosRetrieve, VendedoresList, VendedoresRetrieve, FacturacionList, FacturacionRetrieve
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -17,9 +17,8 @@ urlpatterns = [
     path('vendedores', VendedoresList),
     path('vendedores/<int:pk>/', VendedoresRetrieve),
     # Facturacion Endpoints
-    # path('facturacion', FacturacionList),
-    # path('facturacion/<int:pk>/', FacturacionRetrieve)
-    
+    path('facturacion', FacturacionList),
+    path('facturacion/<int:pk>/', FacturacionRetrieve),
     # Token Endpoints
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

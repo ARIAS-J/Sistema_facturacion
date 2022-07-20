@@ -40,19 +40,19 @@ class Vendedores(models.Model):
     def __str__(self):
         return f"{self.nombre} {self.porciento_comision}"
 
-# class Facturacion(models.Model):
-#     id = models.AutoField(primary_key=True, unique=True)
-#     fecha = models.DateTimeField(auto_now_add=True)
-#     comentario = models.TextField(max_length=255)
-#     cantidad = models.IntegerField(default=0)
+class Facturacion(models.Model):
+    id = models.AutoField(primary_key=True, unique=True)
+    fecha = models.DateTimeField(auto_now_add=True)
+    comentario = models.TextField(max_length=255)
+    cantidad = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
     
-#     # Relationship
-#     id_vendedor = models.ForeignKey("Vendedores", on_delete=models.CASCADE, null=True, blank=True)
-#     id_cliente = models.ForeignKey("Clientes", on_delete=models.CASCADE, null=True, blank=True)
-#     id_articulo = models.ForeignKey("Articulos", on_delete=models.CASCADE, null=True, blank=True)
+    # Relationship
+    id_vendedor = models.ForeignKey("Vendedores", on_delete=models.CASCADE, null=True, blank=True)
+    id_cliente = models.ForeignKey("Clientes", on_delete=models.CASCADE, null=True, blank=True)
+    id_articulo = models.ForeignKey("Articulos", on_delete=models.CASCADE, null=True, blank=True)
     
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     update_At = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_At = models.DateTimeField(auto_now=True)
     
-#     def __str__(self):
-#         return f"{self.id} {self.fecha}"
+    def __str__(self):
+        return f"{self.id} {self.fecha}"

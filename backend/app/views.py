@@ -4,8 +4,8 @@ from rest_framework import status
 
 from drf_yasg.utils import swagger_auto_schema
 
-from .serializers import ClientesSerializer, ArticulosSerializer, VendedoresSerializer
-from .models import Clientes, Articulos, Vendedores
+from .serializers import ClientesSerializer, ArticulosSerializer, VendedoresSerializer, FacturacionSerializer
+from .models import Clientes, Articulos, Vendedores, Facturacion
 
 # "swagger_auto_schema" decorator Returns a path parameter schema to the user.
 @swagger_auto_schema(methods=['post'], request_body=ClientesSerializer)
@@ -171,56 +171,56 @@ def VendedoresRetrieve(request, pk = None):
 
     return Response({'message':'No se ha encontrado un cliente'}, status=status.HTTP_400_BAD_REQUEST)
 
-# # Listar todas las facturaciones
-# @api_view(['GET', 'POST'])
-# def FacturacionList(request):
-#     # List
-#     if request.method == 'GET':
-#         # Queryset
-#         facturacion = Facturacion.objects.all()
-#         # Serializer
-#         serializer = FacturacionSerializer(facturacion,  many=True)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
+@swagger_auto_schema(methods=['post'], request_body=FacturacionSerializer)
+@api_view(['GET', 'POST'])
+def FacturacionList(request):
+    # List
+    if request.method == 'GET':
+        # Queryset
+        facturacion = Facturacion.objects.all()
+        # Serializer
+        serializer = FacturacionSerializer(facturacion,  many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
-#     # Create
-#     elif request.method == 'POST':
-#         serializer = FacturacionSerializer(data=request.data)
+    # Create
+    elif request.method == 'POST':
+        serializer = FacturacionSerializer(data=request.data)
         
-#         # Validacion
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # Validacion
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# # Listar una sola facturacion
-# @api_view(['GET','PUT', 'DELETE'])
-# def FacturacionRetrieve(request, pk = None):
-#     # Queryset
-#     facturacion = Facturacion.objects.filter(id = pk).first()
+@swagger_auto_schema(methods=['put'], request_body=FacturacionSerializer)
+@api_view(['GET','PUT', 'DELETE'])
+def FacturacionRetrieve(request, pk = None):
+    # Queryset
+    facturacion = Facturacion.objects.filter(id = pk).first()
     
-#     # Validacion
-#     if facturacion:
+    # Validacion
+    if facturacion:
         
-#         # Retrieve
-#         if request.method == 'GET':
-#             # Serializer
-#             serializer = FacturacionSerializer(facturacion)
-#             return Response(serializer.data, status=status.HTTP_200_OK)
+        # Retrieve
+        if request.method == 'GET':
+            # Serializer
+            serializer = FacturacionSerializer(facturacion)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
-#         # Update
-#         elif request.method == 'PUT':
-#             # Serializer   
-#             serializer = FacturacionSerializer(facturacion, data=request.data)
+        # Update
+        elif request.method == 'PUT':
+            # Serializer   
+            serializer = FacturacionSerializer(facturacion, data=request.data)
             
-#             # Validacion
-#             if serializer.is_valid():
-#                 serializer.save()
-#                 return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
-#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            # Validacion
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#         # Delete
-#         elif request.method == 'DELETE':
-#             facturacion.delete()
-#             return Response({'message':'Cliente eliminado correctamente'}, status=status.HTTP_200_OK )
+        # Delete
+        elif request.method == 'DELETE':
+            facturacion.delete()
+            return Response({'message':'Facturacion eliminada correctamente'}, status=status.HTTP_200_OK )
 
-#     return Response({'message':'No se ha encontrado un cliente'}, status=status.HTTP_400_BAD_REQUEST)
+    return Response({'message':'No se ha encontrado un cliente'}, status=status.HTTP_400_BAD_REQUEST)

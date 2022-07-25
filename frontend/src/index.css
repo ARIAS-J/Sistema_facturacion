@@ -30,6 +30,10 @@ body {
   gap: 0.5rem;
 }
 
+.rselect__dropdown-indicator {
+  padding: 0 8px !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

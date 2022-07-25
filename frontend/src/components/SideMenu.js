@@ -1,5 +1,5 @@
 import { Button, Card, Menu, Typography } from '@arco-design/web-react'
-import { HiOutlineArchive, HiOutlineChartPie, HiOutlineUser } from 'react-icons/hi'
+import { HiOutlineArchive, HiOutlineChartPie, HiOutlineUser, HiOutlineCash } from 'react-icons/hi'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/Auth';
 
@@ -37,6 +37,14 @@ export default function SideMenu() {
               <div className='menu-item-container'>
                 <HiOutlineChartPie size={15} />
                 <p>Vendedores</p>
+              </div>
+            </Menu.Item>
+          </Link>
+          <Link to="/facturacion">
+            <Menu.Item key='/facturacion'>
+              <div className='menu-item-container'>
+                <HiOutlineCash size={15} />
+                <p>Facturación</p>
               </div>
             </Menu.Item>
           </Link>

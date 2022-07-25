@@ -9,6 +9,7 @@ import { ConfigProvider } from '@arco-design/web-react';
 import esES from '@arco-design/web-react/es/locale/es-ES';
 import LoginPage from './pages/LoginPage';
 import { Private } from './components/Private';
+import InvoicingPage from './pages/InvoicingPage';
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ function App() {
             <Route path='/clientes' element={<Private component={<ClientsPage />} />} />
             <Route path='/articulos' element={<Private component={<ArticlesPage />} />} />
             <Route path='/vendedores' element={<Private component={<SellersPage />} />} />
+            <Route path='/facturacion' element={<Private component={<InvoicingPage />} />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools />

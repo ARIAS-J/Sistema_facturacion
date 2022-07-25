@@ -19,7 +19,7 @@ class VendedoresSerializer(serializers.ModelSerializer):
         
 
 class FacturacionSerializer(serializers.ModelSerializer):
-    vendedor = serializers.SerializerMethodField()
+    # vendedor = serializers.SerializerMethodField()
     
     class Meta:
         model=Facturacion

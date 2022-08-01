@@ -1,3 +1,4 @@
+import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -195,6 +196,7 @@ def FacturacionList(request):
 @swagger_auto_schema(methods=['put'], request_body=FacturacionSerializer)
 @api_view(['GET','PUT', 'DELETE'])
 def FacturacionRetrieve(request, pk = None):
+
     # Queryset
     facturacion = Facturacion.objects.filter(id = pk).first()
     
@@ -224,3 +226,22 @@ def FacturacionRetrieve(request, pk = None):
             return Response({'message':'Facturacion eliminada correctamente'}, status=status.HTTP_200_OK )
 
     return Response({'message':'No se ha encontrado un cliente'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@swagger_auto_schema(methods=['post'])
+@api_view(['POST'])
+def Contabilizar(request):
+    
+    # Recibir array de facturas a contabilizar.
+    if request.method == 'POST':
+        body = request.data
+        return Response(body)
+
+    
+    # Enviar array a contabilidad.
+    
+    # Obtener el id del accountingEntryid de contabilidad.
+    
+    # Guardar el accountingEntryid en facturas.
+    
+    return Response({'message': 'Contabilizar'})

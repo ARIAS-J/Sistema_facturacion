@@ -42,9 +42,10 @@ class Vendedores(models.Model):
 
 class Facturacion(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
-    fecha = models.DateTimeField(auto_now_add=True)
+    fecha = models.DateField(auto_now_add=True)
     comentario = models.TextField(max_length=255)
     cantidad = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
+    accounting_entry_id = models.IntegerField(null=True)
     
     # Relationship
     id_vendedor = models.ForeignKey("Vendedores", on_delete=models.CASCADE, null=True, blank=True)

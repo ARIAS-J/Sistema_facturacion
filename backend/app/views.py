@@ -1,4 +1,5 @@
 import json
+import requests
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -232,10 +233,46 @@ def FacturacionRetrieve(request, pk = None):
 @api_view(['POST'])
 def Contabilizar(request):
     
-    # Recibir array de facturas a contabilizar.
     if request.method == 'POST':
-        body = request.data
-        return Response(body)
+        idArray = request.data
+
+        for pk in idArray:
+            queryResult = Facturacion.objects.get(id = pk)
+            serializer = FacturacionSerializer(queryResult)
+            
+            factura = serializer.data
+            
+            requestData = [
+                {
+                    "Period": factura['fecha'][:7],
+                    "Currency": "DOP",
+                    "Detail": [
+                                {
+                                    "Amount": factura['cantidad'],
+                                    "LegerAccount": 6,
+                                    "MovementType": "DB"
+                                },
+                                {
+                                    "Amount": factura['cantidad'],
+                                    "LegerAccount": 13,
+                                    "MovementType": "CR"
+                                }
+                            ]
+                }
+            ]
+            
+            headers = {'Content-Type':'application/json','Token':'factura007'}
+            
+            response = requests.post('https://service-accounting.herokuapp.com/api/AccountingEntry', data=json.dumps(requestData),  headers=headers)
+            
+            id = response.json().get('responseList')[0]['id']
+            
+            print(id, 'aqui esta el response content')
+            
+            queryResult.accounting_entry_id = id
+            queryResult.save()
+            
+        return Response({'Message':'Peticion Procesada.'})
 
     
     # Enviar array a contabilidad.

@@ -12,6 +12,7 @@ import { getSellers } from '../services/api/sellers-actions/get-sellers';
 import { getClients } from '../services/api/clients-actions/get-clients';
 import CustomSelect from '../components/CustomSelect';
 import Text from '@arco-design/web-react/es/Typography/text';
+import { contabilizar as contabilizarAction } from '../services/api/invoicing-actions/contabilizar';
 
 
 export default function InvoicingPage() {
@@ -20,7 +21,6 @@ export default function InvoicingPage() {
   const { data: articles } = useQuery('articles', getArticles);
   const { data: sellers } = useQuery('sellers', getSellers);
   const { data: clients } = useQuery('clients', getClients);
-
   const { mutate: post, isLoading: postIsLoading } = useMutation(postInvoice, {
     onSuccess: () => {
       queryClient.invalidateQueries('invoices')
@@ -67,6 +67,25 @@ export default function InvoicingPage() {
       })
     }
   })
+
+  const { mutate: contabilizar, isLoading: contabilizarIsLoading } = useMutation(contabilizarAction, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('invoices');
+      setSelectedRowKeys([]);
+      Notification.success({
+        title: 'Éxito',
+        content: 'Facturas contabilizadas.',
+        position: 'bottomRight'
+      })
+    },
+    onError: (e) => {
+      Notification.error({
+        title: 'Error',
+        content: JSON.stringify(e.response.data),
+        position: 'bottomRight'
+      })
+    }
+  });
 
   const [showModal, setShowModal] = useState(false);
   const [form] = Form.useForm();
@@ -124,6 +143,14 @@ export default function InvoicingPage() {
 
   return (
     <Layout>
+      {selectedRowKeys.length > 0 && <div style={{ position: 'absolute', bottom: 40, right: 40 }}>
+        <Button
+          loading={contabilizarIsLoading}
+          size='large'
+          type='primary'
+          onClick={() => contabilizar(selectedRowKeys)}
+        >Contabilizar</Button>
+      </div>}
       <PageHeader
         style={{ marginBottom: '1rem' }}
         title='Facturación'

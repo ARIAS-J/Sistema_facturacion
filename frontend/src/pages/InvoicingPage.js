@@ -11,6 +11,7 @@ import { getArticles } from '../services/api/articles-actions/get-articles';
 import { getSellers } from '../services/api/sellers-actions/get-sellers';
 import { getClients } from '../services/api/clients-actions/get-clients';
 import CustomSelect from '../components/CustomSelect';
+import Text from '@arco-design/web-react/es/Typography/text';
 
 
 export default function InvoicingPage() {
@@ -91,6 +92,14 @@ export default function InvoicingPage() {
     {
       title: 'Comentario',
       dataIndex: 'comentario'
+    },
+    {
+      title: 'ID Registro Contabilidad',
+      dataIndex: 'accounting_entry_id',
+      render: (_, record) => {
+        if (!record.accounting_entry_id) return <Text disabled>Sin contabilizar</Text>
+        return <td>{record.accounting_entry_id}</td>;
+      }
     },
     {
       title: 'Acción',

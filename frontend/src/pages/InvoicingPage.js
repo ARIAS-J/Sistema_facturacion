@@ -71,6 +71,7 @@ export default function InvoicingPage() {
   const [showModal, setShowModal] = useState(false);
   const [form] = Form.useForm();
   const [editingId, setEditingId] = useState(null);
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
   const columns = [
     {
@@ -130,7 +131,21 @@ export default function InvoicingPage() {
           <Button icon={<HiPlusSm />} type='primary' onClick={() => setShowModal(true)} >Facturar</Button>
         }
       />
-      <Table rowKey='id' columns={columns} data={data?.data} />
+      <Table
+        rowKey='id'
+        columns={columns}
+        data={data?.data}
+        rowSelection={{
+          onChange: (selectedRowKeys) => {
+            console.log('onChange:', selectedRowKeys);
+            setSelectedRowKeys(selectedRowKeys);
+          },
+          selectedRowKeys, checkboxProps: (record) => {
+            return {
+              disabled: !!record.accounting_entry_id,
+            };
+          },
+        }} />
       <Modal
         title='Facturar'
         visible={showModal}

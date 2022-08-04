@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Select from 'react-select';
 
 const customSelectStyle = {
@@ -30,7 +30,26 @@ const customSelectStyle = {
 }
 
 export default function CustomSelect({ options, dataLabelName, onChange, value }) {
+  const ref = useRef();
+
+  useEffect(() => {
+    if (value !== undefined) return;
+    ref.current.clearValue();
+  }, [value]);
+
   return (
-    <Select onChange={(opt) => onChange(opt.value)} classNamePrefix="rselect" placeholder="Selecciona o busca" styles={customSelectStyle} options={options.map(option => ({ label: option[dataLabelName ? dataLabelName : 'nombre'], value: option.id }))} />
+    <Select
+      ref={ref}
+      defaultValue={value}
+      onChange={(opt) => onChange(opt?.value)}
+      classNamePrefix="rselect"
+      placeholder="Selecciona o busca"
+      styles={customSelectStyle}
+      options={options.map(option => ({
+        label: option[dataLabelName ? dataLabelName : 'nombre'],
+        value: option.id
+      }))}
+    />
+
   )
 }

@@ -44,7 +44,7 @@ class Facturacion(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     fecha = models.DateField(auto_now_add=True)
     comentario = models.TextField(max_length=255)
-    cantidad = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
+    cantidad = models.IntegerField(validators=[MinValueValidator(1)])
     accounting_entry_id = models.IntegerField(null=True)
     
     # Relationship

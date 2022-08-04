@@ -14,14 +14,13 @@ body {
   box-sizing: border-box;
 }
 
-.dashboard-structure {
-  display: grid;
-  grid-template-columns: 18rem 1fr;
-  min-height: 100vh;
+.arco-avatar {
+  background-color: white !important;
 }
 
 .dashboard-content {
   padding: 1rem;
+  margin-left: 18rem;
 }
 
 .menu-item-container {

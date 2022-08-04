@@ -4,11 +4,9 @@ import SideMenu from './SideMenu'
 export default function Layout({ children }) {
   return (
     <>
-      <div className='dashboard-structure'>
-        <SideMenu />
-        <div className='dashboard-content'>
-          {children}
-        </div>
+      <SideMenu />
+      <div className='dashboard-content'>
+        {children}
       </div>
     </>
   )

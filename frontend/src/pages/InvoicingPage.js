@@ -26,7 +26,6 @@ export default function InvoicingPage() {
       queryClient.invalidateQueries('invoices')
       setShowModal(false);
       form.clearFields();
-      form.setFieldValue('estado', true);
       Notification.success({
         title: 'Éxito',
         content: 'Factura registrada',
@@ -143,19 +142,20 @@ export default function InvoicingPage() {
 
   return (
     <Layout>
-      {selectedRowKeys.length > 0 && <div style={{ position: 'absolute', bottom: 40, right: 40 }}>
-        <Button
-          loading={contabilizarIsLoading}
-          size='large'
-          type='primary'
-          onClick={() => contabilizar(selectedRowKeys)}
-        >Contabilizar</Button>
-      </div>}
       <PageHeader
         style={{ marginBottom: '1rem' }}
         title='Facturación'
         extra={
-          <Button icon={<HiPlusSm />} type='primary' onClick={() => setShowModal(true)} >Facturar</Button>
+          <Space>
+            {selectedRowKeys.length > 0 &&
+              <Button
+                loading={contabilizarIsLoading}
+                type='primary'
+                onClick={() => contabilizar(selectedRowKeys)}
+              >Contabilizar</Button>
+            }
+            <Button icon={<HiPlusSm />} type='primary' onClick={() => setShowModal(true)} >Facturar</Button>
+          </Space>
         }
       />
       <Table

@@ -238,9 +238,21 @@ def Contabilizar(request):
 
         for pk in idArray:
             queryResult = Facturacion.objects.get(id = pk)
+            
             serializer = FacturacionSerializer(queryResult)
             
             factura = serializer.data
+            
+            articleid = factura['id_articulo']
+            
+            articleObject = Articulos.objects.get(id = articleid)
+            
+            serializerArticle = ArticulosSerializer(articleObject)
+            
+            articlePrice = serializerArticle.data
+            
+            amount = float(articlePrice['precio_unitario']) * float(factura['cantidad'])
+            
             
             requestData = [
                 {
@@ -248,12 +260,12 @@ def Contabilizar(request):
                     "Currency": "DOP",
                     "Detail": [
                                 {
-                                    "Amount": factura['cantidad'],
+                                    "Amount": amount,
                                     "LegerAccount": 6,
                                     "MovementType": "DB"
                                 },
                                 {
-                                    "Amount": factura['cantidad'],
+                                    "Amount": amount,
                                     "LegerAccount": 13,
                                     "MovementType": "CR"
                                 }
@@ -267,18 +279,9 @@ def Contabilizar(request):
             
             id = response.json().get('responseList')[0]['id']
             
-            print(id, 'aqui esta el response content')
-            
             queryResult.accounting_entry_id = id
             queryResult.save()
             
         return Response({'Message':'Peticion Procesada.'})
-
     
-    # Enviar array a contabilidad.
-    
-    # Obtener el id del accountingEntryid de contabilidad.
-    
-    # Guardar el accountingEntryid en facturas.
-    
-    return Response({'message': 'Contabilizar'})
+    return Response()

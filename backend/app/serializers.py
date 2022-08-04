@@ -19,16 +19,8 @@ class VendedoresSerializer(serializers.ModelSerializer):
         
 
 class FacturacionSerializer(serializers.ModelSerializer):
-    # vendedor = serializers.SerializerMethodField()
-    
     class Meta:
         model=Facturacion
-        fields=('id','fecha','comentario','cantidad','accounting_entry_id','id_vendedor', 'id_cliente', 'id_articulo' )
+        fields=('id','fecha','comentario','cantidad','accounting_entry_id', 'id_cliente', 'id_articulo','vendedor')
         extra_kwargs = {'email': {'required': True}, 
                         'id_vendedor': {'required': True}, 'id_cliente': {'required': True}, 'id_articulo': {'required': True}}
-    
-    # def get_vendedor(self, obj):
-    #     vendedor_query = model.Vendedores.objects.filter(id_vendedor=obj.id)
-    #     serializer = VendedoresSerializer(vendedor_query, many=True)
-        
-    #     return serializer.data

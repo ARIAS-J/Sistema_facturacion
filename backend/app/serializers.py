@@ -21,6 +21,6 @@ class VendedoresSerializer(serializers.ModelSerializer):
 class FacturacionSerializer(serializers.ModelSerializer):
     class Meta:
         model=Facturacion
-        fields=('id','fecha','comentario','cantidad','accounting_entry_id', 'id_cliente', 'id_articulo','vendedor')
+        fields=('id','fecha','comentario','cantidad','accounting_entry_id', 'id_vendedor','id_cliente', 'id_articulo')
         extra_kwargs = {'email': {'required': True}, 
                         'id_vendedor': {'required': True}, 'id_cliente': {'required': True}, 'id_articulo': {'required': True}}

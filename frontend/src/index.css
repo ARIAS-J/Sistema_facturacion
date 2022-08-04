@@ -14,6 +14,10 @@ body {
   box-sizing: border-box;
 }
 
+.arco-avatar {
+  background-color: white !important;
+}
+
 .dashboard-content {
   padding: 1rem;
   margin-left: 18rem;

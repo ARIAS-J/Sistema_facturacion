@@ -93,20 +93,20 @@ export default function InvoicingPage() {
 
   const columns = [
     {
-      title: 'ID Artículo',
-      dataIndex: 'id_articulo'
+      title: 'Artículo',
+      dataIndex: 'articulo'
     },
     {
       title: 'Cantidad',
       dataIndex: 'cantidad'
     },
     {
-      title: 'ID Cliente',
-      dataIndex: 'id_cliente'
+      title: 'Cliente',
+      dataIndex: 'cliente'
     },
     {
-      title: 'ID Vendedor',
-      dataIndex: 'id_vendedor'
+      title: 'Vendedor',
+      dataIndex: 'vendedor'
     },
     {
       title: 'Comentario',

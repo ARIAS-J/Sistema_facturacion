@@ -19,8 +19,13 @@ class VendedoresSerializer(serializers.ModelSerializer):
         
 
 class FacturacionSerializer(serializers.ModelSerializer):
+    # obtener la data nombre mediante la relacion
+    vendedor = serializers.CharField(source='id_vendedor.nombre', read_only=True)
+    cliente = serializers.CharField(source='id_cliente.nombre_comercial', read_only=True)
+    articulo = serializers.CharField(source='id_articulo.nombre', read_only=True)
+    
     class Meta:
         model=Facturacion
-        fields=('id','fecha','comentario','cantidad','accounting_entry_id', 'id_vendedor','id_cliente', 'id_articulo')
+        fields=('id','fecha','comentario','cantidad','accounting_entry_id','vendedor', 'cliente', 'articulo')
         extra_kwargs = {'email': {'required': True}, 
                         'id_vendedor': {'required': True}, 'id_cliente': {'required': True}, 'id_articulo': {'required': True}}

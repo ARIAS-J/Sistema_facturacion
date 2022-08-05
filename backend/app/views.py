@@ -246,13 +246,12 @@ def Contabilizar(request):
             articleid = factura['id_articulo']
             
             articleObject = Articulos.objects.get(id = articleid)
-            
+
             serializerArticle = ArticulosSerializer(articleObject)
             
             articlePrice = serializerArticle.data
             
             amount = float(articlePrice['precio_unitario']) * float(factura['cantidad'])
-            
             
             requestData = [
                 {

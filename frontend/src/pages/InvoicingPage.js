@@ -147,13 +147,12 @@ export default function InvoicingPage() {
         title='Facturación'
         extra={
           <Space>
-            {selectedRowKeys.length > 0 &&
-              <Button
-                loading={contabilizarIsLoading}
-                type='primary'
-                onClick={() => contabilizar(selectedRowKeys)}
-              >Contabilizar</Button>
-            }
+            <Button
+              disabled={selectedRowKeys.length === 0}
+              loading={contabilizarIsLoading}
+              type={selectedRowKeys.length === 0 ? 'dashed' : 'primary'}
+              onClick={() => contabilizar(selectedRowKeys)}
+            >Contabilizar</Button>
             <Button icon={<HiPlusSm />} type='primary' onClick={() => setShowModal(true)} >Facturar</Button>
           </Space>
         }

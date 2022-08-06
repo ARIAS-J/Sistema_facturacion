@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export function getClients() {
-  return axios.get('http://127.0.0.1:8000/api/v1/clientes');
+  return axios.get('/api/v1/clientes');
 }

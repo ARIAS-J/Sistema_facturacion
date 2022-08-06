@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios from "../../../axios-config";
 
 export function patchClient(data) {
-  return axios.put(`http://127.0.0.1:8000/api/v1/clientes/${data.id}/`, data);
+  return axios.put(`/api/v1/clientes/${data.id}/`, data);
 }

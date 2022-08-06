@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios from "../../../axios-config";
 
 export function postClient(client) {
-  return axios.post('http://127.0.0.1:8000/api/v1/clientes', client);
+  return axios.post('/api/v1/clientes', client);
 }

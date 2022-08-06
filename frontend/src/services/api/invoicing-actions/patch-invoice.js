@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios from "../../../axios-config";
 
 export function patchInvoices(data) {
-  return axios.put(`http://127.0.0.1:8000/api/v1/facturacion/${data.id}/`, data);
+  return axios.put(`/api/v1/facturacion/${data.id}/`, data);
 }

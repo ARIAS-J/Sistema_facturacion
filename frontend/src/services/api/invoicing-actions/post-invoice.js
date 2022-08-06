@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios from "../../../axios-config";
 
 export function postInvoice(data) {
-  return axios.post('http://127.0.0.1:8000/api/v1/facturacion', data);
+  return axios.post('/api/v1/facturacion', data);
 }

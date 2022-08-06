@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../axios-config';
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
@@ -13,7 +13,7 @@ function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   async function login(credentials) {
-    const { data } = await axios.post('http://localhost:8000/api/v1/token/', credentials);
+    const { data } = await axios.post('/api/v1/token/', credentials);
     const refresh = data.refresh;
     localStorage.setItem('refresh', refresh);
     setCurrentUser(data);
@@ -34,7 +34,7 @@ function AuthProvider({ children }) {
     }
 
 
-    axios.post('http://localhost:8000/api/v1/token/refresh/', { refresh: refresh }).then(({ data }) => {
+    axios.post('/api/v1/token/refresh/', { refresh: refresh }).then(({ data }) => {
       console.log(data)
       setCurrentUser({ access: data.access, refresh: refresh });
       console.log('user found');
